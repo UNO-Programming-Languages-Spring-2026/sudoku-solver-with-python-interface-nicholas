@@ -7,7 +7,7 @@ class Context:
     def __init__(self, board: Sudoku):
         self.board = board
 
-    def initial(self) -> list[clingo.Symbol]:
+    def initial(self):
         facts = []
         for (row, col), val in sorted(self.board.board.items()):
             facts.append(
@@ -31,13 +31,10 @@ class SudokuApp(clingo.Application):
         self.context = None
 
     def main(self, control, files):
-        if len(files) != 1:
-            raise RuntimeError("Expected exactly one input file.")
-
         with open(files[0], "r", encoding="utf-8") as f:
-            puzzle_text = f.read()
+            text = f.read()
 
-        board = Sudoku.from_str(puzzle_text)
+        board = Sudoku.from_str(text)
         self.context = Context(board)
 
         control.load("sudoku.lp")
@@ -47,8 +44,7 @@ class SudokuApp(clingo.Application):
 
     def print_model(self, model, printer):
         sudoku = Sudoku.from_model(model)
-        printer(str(sudoku))
-        return True
+        print(str(sudoku))
 
 
 if __name__ == "__main__":

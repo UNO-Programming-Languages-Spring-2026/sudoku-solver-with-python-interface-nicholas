@@ -15,8 +15,7 @@ class SudokuApp(clingo.Application):
 
     def print_model(self, model, printer):
         atoms = model.symbols(shown=True)
-        printer(" ".join(str(atom) for atom in atoms))
-        return True
+        print(" ".join(str(atom) for atom in atoms))
 
 
 if __name__ == "__main__":

@@ -16,8 +16,7 @@ class SudokuApp(clingo.Application):
 
     def print_model(self, model, printer):
         sudoku = Sudoku.from_model(model)
-        printer(str(sudoku))
-        return True
+        print(str(sudoku))
 
 
 if __name__ == "__main__":
