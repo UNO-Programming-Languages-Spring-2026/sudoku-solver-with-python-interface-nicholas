@@ -1,17 +1,12 @@
-<<<<<<< HEAD
-=======
-from typing import Tuple
->>>>>>> 9fce7cb4472427cb9376452fb0b0910f38f7fc04
 import clingo
 
 
 class Sudoku:
-<<<<<<< HEAD
     def __init__(self, board: dict[tuple[int, int], int]):
         self.board = board
 
     @classmethod
-    def from_model(cls, model: clingo.solving.Model) -> 'Sudoku':
+    def from_model(cls, model: clingo.solving.Model) -> "Sudoku":
         board = {}
         for sym in model.symbols(shown=True):
             if sym.name == "sudoku" and len(sym.arguments) == 3:
@@ -42,8 +37,8 @@ class Sudoku:
         )
 
     @classmethod
-    def from_str(cls, s: str) -> 'Sudoku':
-        sudoku = {}
+    def from_str(cls, s: str) -> "Sudoku":
+        board = {}
         lines = s.splitlines()
 
         row = 0
@@ -56,27 +51,6 @@ class Sudoku:
             cells = line.split()
             for col, cell in enumerate(cells, start=1):
                 if cell != "-":
-                    sudoku[(row, col)] = int(cell)
+                    board[(row, col)] = int(cell)
 
-        return cls(sudoku)
-=======
-    def __init__(self, sudoku: dict[Tuple[int, int], int]):
-        self.sudoku = sudoku
-
-    def __str__(self) -> str:
-        s = ""
-        # YOUR CODE HERE
-        return s
-
-    @classmethod
-    def from_str(cls, s: str) -> "Sudoku":
-        sudoku = {}
-        # YOUR CODE HERE
-        return cls(sudoku)
-
-    @classmethod
-    def from_model(cls, model: clingo.solving.Model) -> "Sudoku":
-        sudoku = {}
-        # YOUR CODE HERE
-        return cls(sudoku)
->>>>>>> 9fce7cb4472427cb9376452fb0b0910f38f7fc04
+        return cls(board)
