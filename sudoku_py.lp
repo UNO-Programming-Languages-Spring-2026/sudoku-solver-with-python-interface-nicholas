@@ -1,0 +1,1 @@
+initial(X,Y,N) :- initial(X,Y,N) = @initial().
