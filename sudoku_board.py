@@ -4,6 +4,7 @@ import clingo
 class Sudoku:
     def __init__(self, board: dict[tuple[int, int], int]):
         self.board = board
+        self.sudoku = board
 
     @classmethod
     def from_model(cls, model: clingo.solving.Model) -> "Sudoku":
@@ -39,16 +40,16 @@ class Sudoku:
     @classmethod
     def from_str(cls, s: str) -> "Sudoku":
         board = {}
-        lines = s.splitlines()
-
         row = 0
-        for line in lines:
+
+        for line in s.splitlines():
             line = line.strip()
             if line == "":
                 continue
 
             row += 1
             cells = line.split()
+
             for col, cell in enumerate(cells, start=1):
                 if cell != "-":
                     board[(row, col)] = int(cell)
