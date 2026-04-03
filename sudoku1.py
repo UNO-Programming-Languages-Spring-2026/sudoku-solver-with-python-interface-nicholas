@@ -9,13 +9,13 @@ class SudokuApp(clingo.Application):
         control.load("sudoku.lp")
         for f in files:
             control.load(f)
-
         control.ground([("base", [])])
         control.solve()
 
     def print_model(self, model, printer):
         atoms = sorted(str(atom) for atom in model.symbols(shown=True))
         print(" ".join(atoms))
+        return True
 
 
 if __name__ == "__main__":
