@@ -9,7 +9,7 @@ class Context:
 
     def initial(self):
         facts = []
-        for (row, col), val in sorted(self.board.board.items()):
+        for (row, col), val in self.board.board.items():
             facts.append(
                 clingo.Function(
                     "initial",
@@ -45,6 +45,7 @@ class SudokuApp(clingo.Application):
     def print_model(self, model, printer):
         sudoku = Sudoku.from_model(model)
         print(str(sudoku))
+        return True
 
 
 if __name__ == "__main__":
