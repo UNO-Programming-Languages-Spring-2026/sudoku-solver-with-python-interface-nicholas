@@ -10,13 +10,13 @@ class SudokuApp(clingo.Application):
         control.load("sudoku.lp")
         for f in files:
             control.load(f)
+
         control.ground([("base", [])])
         control.solve()
 
     def print_model(self, model, printer):
         sudoku = Sudoku.from_model(model)
         print(str(sudoku))
-        return True
 
 
 if __name__ == "__main__":

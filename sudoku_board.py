@@ -4,6 +4,7 @@ import clingo
 class Sudoku:
     def __init__(self, board: dict[tuple[int, int], int]):
         self.board = board
+        self.sudoku = board
 
     @classmethod
     def from_model(cls, model: clingo.solving.Model) -> "Sudoku":
